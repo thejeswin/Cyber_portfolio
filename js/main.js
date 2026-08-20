@@ -18,6 +18,7 @@ class ExecutivePortfolio {
     this.renderCertifications();
     this.renderEducation();
     this.bindEvents();
+    this.initMobileNav();
     this.initMouseSpotlight();
     this.init3DCardParallax();
     this.initScrollSpy();
@@ -175,9 +176,81 @@ class ExecutivePortfolio {
     });
   }
 
+  initMobileNav() {
+    const toggleBtn = document.getElementById('mobile-menu-toggle');
+    const drawer = document.getElementById('mobile-nav-drawer');
+    const backdrop = document.getElementById('mobile-nav-backdrop');
+    const closeBtn = document.getElementById('mobile-drawer-close');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link, .mobile-action-btn, .mobile-social-pill');
+
+    if (!toggleBtn || !drawer || !backdrop) return;
+
+    const openMenu = () => {
+      toggleBtn.classList.add('is-active');
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      drawer.classList.add('is-open');
+      drawer.setAttribute('aria-hidden', 'false');
+      backdrop.classList.add('is-open');
+      backdrop.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('mobile-nav-active');
+    };
+
+    const closeMenu = () => {
+      toggleBtn.classList.remove('is-active');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      drawer.classList.remove('is-open');
+      drawer.setAttribute('aria-hidden', 'true');
+      backdrop.classList.remove('is-open');
+      backdrop.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('mobile-nav-active');
+    };
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = drawer.classList.contains('is-open');
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeMenu();
+      });
+    }
+
+    backdrop.addEventListener('click', () => {
+      closeMenu();
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
+
+    // Close on ESC key press
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+        closeMenu();
+      }
+    });
+
+    // Automatically close on viewport resize to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1080 && drawer.classList.contains('is-open')) {
+        closeMenu();
+      }
+    });
+  }
+
   initScrollSpy() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
     window.addEventListener('scroll', () => {
       let current = '';
@@ -192,6 +265,13 @@ class ExecutivePortfolio {
       });
 
       navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+
+      mobileNavLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${current}`) {
           link.classList.add('active');

@@ -305,13 +305,294 @@ a:hover {
   white-space: nowrap;
 }
 
+/* Mobile Menu Toggle Button */
 .mobile-toggle-btn {
   display: none;
-  background: transparent;
-  border: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(14, 165, 233, 0.08);
+  border: 1px solid rgba(14, 165, 233, 0.35);
+  border-radius: var(--radius-sm);
   color: var(--text-heading);
   cursor: pointer;
-  padding: 6px;
+  padding: 0;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  z-index: 105;
+  box-shadow: 0 0 12px rgba(14, 165, 233, 0.15);
+  flex-shrink: 0;
+}
+
+.mobile-toggle-btn:hover {
+  background: rgba(14, 165, 233, 0.2);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.4);
+  transform: translateY(-1px);
+}
+
+.mobile-toggle-btn:active {
+  transform: scale(0.96);
+}
+
+.hamburger-box {
+  width: 20px;
+  height: 14px;
+  display: inline-block;
+  position: relative;
+}
+
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after {
+  width: 20px;
+  height: 2px;
+  background-color: var(--accent-cyan);
+  border-radius: 2px;
+  position: absolute;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, opacity 0.2s ease, top 0.25s ease, bottom 0.25s ease;
+}
+
+.hamburger-inner {
+  top: 50%;
+  transform: translateY(-50%);
+  display: block;
+}
+
+.hamburger-inner::before {
+  content: "";
+  top: -6px;
+  display: block;
+}
+
+.hamburger-inner::after {
+  content: "";
+  bottom: -6px;
+  display: block;
+}
+
+/* Active Hamburger Animation (Transforms to X) */
+.mobile-toggle-btn.is-active {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.4);
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.25);
+}
+
+.mobile-toggle-btn.is-active .hamburger-inner {
+  transform: rotate(45deg);
+  background-color: #f87171;
+}
+
+.mobile-toggle-btn.is-active .hamburger-inner::before {
+  top: 0;
+  opacity: 0;
+}
+
+.mobile-toggle-btn.is-active .hamburger-inner::after {
+  bottom: 0;
+  transform: rotate(-90deg);
+  background-color: #f87171;
+}
+
+/* Mobile Nav Backdrop Overlay */
+.mobile-nav-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(4, 7, 13, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 98;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-nav-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Mobile Navigation Drawer */
+.mobile-nav-drawer {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  background: rgba(9, 13, 22, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(14, 165, 233, 0.3);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.85), 0 0 35px rgba(14, 165, 233, 0.15);
+  z-index: 99;
+  max-height: calc(100vh - var(--header-height));
+  overflow-y: auto;
+  padding: 16px 20px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-16px);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.32s ease;
+}
+
+.mobile-nav-drawer.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobile-drawer-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobile-drawer-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-cyan);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.mobile-drawer-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobile-drawer-close:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #f87171;
+}
+
+/* Mobile Nav Links */
+.mobile-nav-body {
+  width: 100%;
+}
+
+.mobile-nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--text-body);
+  font-size: 0.94rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.mobile-nav-link .m-icon {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  flex-shrink: 0;
+}
+
+.mobile-nav-link:hover {
+  background: rgba(14, 165, 233, 0.1);
+  border-color: rgba(14, 165, 233, 0.3);
+  color: var(--text-pure);
+  transform: translateX(4px);
+}
+
+.mobile-nav-link.active {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.4);
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+.mobile-nav-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobile-action-btn {
+  width: 100%;
+  justify-content: center;
+  font-size: 0.88rem;
+  padding: 11px 16px;
+}
+
+.mobile-quick-socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.mobile-social-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.mobile-social-pill:hover {
+  background: rgba(14, 165, 233, 0.12);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+/* Prevent scrolling when mobile drawer is open */
+body.mobile-nav-active {
+  overflow: hidden;
 }
 
 /* ==========================================================================
@@ -1240,8 +1521,13 @@ textarea.form-control {
 
 /* Medium-Large Tablets & Small Laptops (< 1080px) */
 @media (max-width: 1080px) {
+  .desktop-nav,
   .nav-menu {
-    display: none;
+    display: none !important;
+  }
+
+  .mobile-toggle-btn {
+    display: flex !important;
   }
 
   .nav-actions .btn-sm {
@@ -1282,13 +1568,18 @@ textarea.form-control {
   }
 
   .nav-container {
-    padding: 0 14px;
-    gap: 8px;
+    padding: 0 16px;
+    gap: 10px;
     flex-wrap: nowrap;
   }
 
+  .desktop-nav,
   .nav-menu {
-    display: none;
+    display: none !important;
+  }
+
+  .mobile-toggle-btn {
+    display: flex !important;
   }
 
   .brand-logo {
@@ -1299,14 +1590,14 @@ textarea.form-control {
   }
 
   .brand-icon {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     border-radius: 8px;
   }
 
   .brand-icon svg {
-    width: 17px;
-    height: 17px;
+    width: 18px;
+    height: 18px;
   }
 
   .brand-title {
@@ -1315,7 +1606,7 @@ textarea.form-control {
   }
 
   .brand-name {
-    font-size: clamp(0.85rem, 3.8vw, 1.02rem);
+    font-size: clamp(0.82rem, 3.6vw, 0.98rem);
     white-space: nowrap;
     line-height: 1.2;
     overflow: hidden;
@@ -1323,20 +1614,25 @@ textarea.form-control {
   }
 
   .brand-subtitle {
-    font-size: 0.6rem;
+    font-size: 0.58rem;
     white-space: nowrap;
     line-height: 1.2;
   }
 
   .nav-actions {
-    gap: 6px;
+    gap: 8px;
     flex-shrink: 0;
+  }
+
+  /* On smaller devices, hide the secondary inline 'Get in Touch' button in header to prevent crowding since it is in mobile drawer and hero */
+  .nav-actions a[href="#contact"].btn-primary {
+    display: none;
   }
 
   .nav-actions .btn-sm {
     padding: 6px 12px;
-    font-size: 0.78rem;
-    height: 34px;
+    font-size: 0.76rem;
+    height: 36px;
     white-space: nowrap;
   }
 
