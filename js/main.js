@@ -270,23 +270,21 @@ class ExecutivePortfolio {
         current = 'contact';
       }
 
-      // If at the top of the page or in the hero/overview section, activate About/Hero
+      // If at the top of the page or in the hero section, activate 'about'
       if (!current || current === 'hero') {
         current = 'about';
       }
 
       navLinks.forEach(link => {
         link.classList.remove('active');
-        const href = link.getAttribute('href');
-        if (href === `#${current}` || (current === 'about' && (href === '#about' || href === '#hero'))) {
+        if (link.getAttribute('href') === `#${current}`) {
           link.classList.add('active');
         }
       });
 
       mobileNavLinks.forEach(link => {
         link.classList.remove('active');
-        const href = link.getAttribute('href');
-        if (href === `#${current}` || (current === 'about' && (href === '#about' || href === '#hero'))) {
+        if (link.getAttribute('href') === `#${current}`) {
           link.classList.add('active');
         }
       });
