@@ -11,6 +11,8 @@ const PORTFOLIO_DATA = {
     email: "thejes0611@gmail.com",
     linkedin: "https://linkedin.com/in/thejeswin",
     linkedinDisplay: "linkedin.com/in/thejeswin",
+    github: "https://github.com/thejeswin",
+    githubDisplay: "github.com/thejeswin",
     tryhackme: "https://tryhackme.com/p/Thejes",
     tryhackmeDisplay: "tryhackme.com/p/Thejes",
     resumeUrl: "resume/Thejeswin_S_L_Resume.pdf",
