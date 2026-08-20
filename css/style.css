@@ -153,6 +153,7 @@ a:hover {
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  gap: 16px;
 }
 
 .brand-logo {
@@ -160,6 +161,8 @@ a:hover {
   align-items: center;
   gap: 12px;
   text-decoration: none;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .brand-icon {
@@ -236,6 +239,8 @@ a:hover {
 .brand-title {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .brand-name {
@@ -244,20 +249,25 @@ a:hover {
   font-weight: 700;
   color: var(--text-pure);
   letter-spacing: -0.01em;
+  white-space: nowrap;
+  line-height: 1.2;
 }
 
 .brand-subtitle {
   font-size: 0.72rem;
   color: var(--accent-cyan);
   font-family: var(--font-mono);
+  white-space: nowrap;
+  line-height: 1.2;
 }
 
 /* Nav Links */
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
   list-style: none;
+  flex-shrink: 1;
 }
 
 .nav-link {
@@ -267,6 +277,7 @@ a:hover {
   position: relative;
   padding: 6px 0;
   transition: color 0.2s ease;
+  white-space: nowrap;
 }
 
 .nav-link::after {
@@ -289,7 +300,9 @@ a:hover {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .mobile-toggle-btn {
@@ -319,6 +332,8 @@ a:hover {
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .btn-primary {
@@ -377,7 +392,12 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+  padding: 24px 16px;
+  border-radius: var(--radius-lg);
+  background: radial-gradient(circle at 50% 35%, rgba(9, 13, 22, 0.85) 0%, rgba(9, 13, 22, 0.4) 65%, transparent 100%);
 }
 
 /* Status Pill */
@@ -1218,6 +1238,18 @@ textarea.form-control {
    RESPONSIVE BREAKPOINTS & MOBILE PERFECTION
    ========================================================================== */
 
+/* Medium-Large Tablets & Small Laptops (< 1080px) */
+@media (max-width: 1080px) {
+  .nav-menu {
+    display: none;
+  }
+
+  .nav-actions .btn-sm {
+    padding: 7px 14px;
+    font-size: 0.8rem;
+  }
+}
+
 /* Medium Screens (Tablets / Laptops < 992px) */
 @media (max-width: 992px) {
   .certs-edu-layout {
@@ -1235,7 +1267,7 @@ textarea.form-control {
   }
 
   .hero-inner {
-    padding: 0 10px;
+    padding: 16px 10px;
   }
 }
 
