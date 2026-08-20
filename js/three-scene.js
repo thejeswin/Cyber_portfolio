@@ -94,27 +94,29 @@ class Interactive3DCanvas {
     this.origPositions = new Float32Array(this.posAttr.array.length);
     this.origPositions.set(this.posAttr.array);
 
+    const isMobile = window.innerWidth < 768;
+
     // Wireframe Mesh Material
     this.material = new THREE.MeshPhongMaterial({
       color: 0x1e3a8a,
       emissive: 0x0c1e4a,
       wireframe: true,
       transparent: true,
-      opacity: 0.35,
+      opacity: isMobile ? 0.16 : 0.35,
       shininess: 90
     });
 
     this.mesh = new THREE.Mesh(this.geometry, this.material);
     this.mesh.rotation.x = -Math.PI / 2.6;
-    this.mesh.position.set(0, -60, -50);
+    this.mesh.position.set(0, isMobile ? -120 : -60, isMobile ? -90 : -50);
     this.scene.add(this.mesh);
 
     // Glowing Node Points at Vertices
     const pointsMat = new THREE.PointsMaterial({
       color: 0x60a5fa,
-      size: 2.2,
+      size: isMobile ? 1.6 : 2.2,
       transparent: true,
-      opacity: 0.65,
+      opacity: isMobile ? 0.35 : 0.65,
       blending: THREE.AdditiveBlending
     });
 

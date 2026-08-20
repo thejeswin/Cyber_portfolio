@@ -1215,41 +1215,375 @@ textarea.form-control {
 }
 
 /* ==========================================================================
-   RESPONSIVE BREAKPOINTS
+   RESPONSIVE BREAKPOINTS & MOBILE PERFECTION
    ========================================================================== */
 
+/* Medium Screens (Tablets / Laptops < 992px) */
 @media (max-width: 992px) {
   .certs-edu-layout {
     grid-template-columns: 1fr;
+    gap: 30px;
   }
 
   .contact-grid {
     grid-template-columns: 1fr;
+    gap: 30px;
   }
 
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .hero-inner {
+    padding: 0 10px;
+  }
 }
 
+/* Small Tablets & Mobile Phones (< 768px) */
 @media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  .site-header {
+    height: 64px;
+  }
+
+  .nav-container {
+    padding: 0 14px;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+
   .nav-menu {
     display: none;
   }
 
-  .mobile-toggle-btn {
-    display: block;
+  .brand-logo {
+    gap: 8px;
+    min-width: 0;
+    flex-shrink: 1;
+    overflow: hidden;
+  }
+
+  .brand-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+
+  .brand-icon svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .brand-title {
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .brand-name {
+    font-size: clamp(0.85rem, 3.8vw, 1.02rem);
+    white-space: nowrap;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .brand-subtitle {
+    font-size: 0.6rem;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+
+  .nav-actions {
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .nav-actions .btn-sm {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+    height: 34px;
+    white-space: nowrap;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    padding: calc(64px + 20px) 0 35px 0;
+    min-height: auto;
+  }
+
+  .hero-inner {
+    gap: 14px;
+  }
+
+  .hero-avatar-wrapper {
+    width: 115px;
+    height: 115px;
+  }
+
+  .status-badge {
+    font-size: 0.72rem;
+    padding: 5px 12px;
+    max-width: 100%;
+    text-align: center;
+    line-height: 1.35;
+  }
+
+  .hero-title {
+    font-size: clamp(1.9rem, 7.5vw, 2.75rem);
+    letter-spacing: -0.025em;
+    margin: 2px 0;
+    line-height: 1.15;
+  }
+
+  .hero-roles-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 6px 8px;
+    font-size: 0.82rem;
+    margin-bottom: 6px;
+  }
+
+  .hero-roles-bar .role-dot {
+    display: none;
+  }
+
+  .hero-roles-bar span:not(.role-dot) {
+    background: rgba(14, 165, 233, 0.08);
+    border: 1px solid rgba(14, 165, 233, 0.22);
+    color: var(--accent-cyan);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-bio {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    padding: 0 4px;
+    margin-bottom: 8px;
+    max-width: 100%;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 12px auto;
+    gap: 10px;
+  }
+
+  .hero-cta-group .btn-lg {
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 0.9rem;
+  }
+
+  .hero-contact-strip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .contact-pill {
+    font-size: 0.74rem;
+    padding: 6px 10px;
+    max-width: 100%;
+    word-break: break-word;
+  }
+
+  /* Grid & Sections */
+  .section-block {
+    padding: 40px 0;
+  }
+
+  .section-head {
+    margin-bottom: 20px;
+  }
+
+  .section-heading {
+    font-size: 1.45rem;
+  }
+
+  .section-desc {
+    font-size: 0.86rem;
   }
 
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .stat-item-card {
+    padding: 14px 10px;
+  }
+
+  .stat-number {
+    font-size: 1.55rem;
+  }
+
+  .stat-title {
+    font-size: 0.78rem;
+  }
+
+  .stat-sub {
+    font-size: 0.68rem;
   }
 
   .skills-categories-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .skill-category-box {
+    padding: 18px 14px;
+  }
+
+  .competencies-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .comp-card {
+    padding: 18px 14px;
   }
 
   .project-card {
-    padding: 24px;
+    padding: 20px 16px;
+  }
+
+  .project-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .project-title {
+    font-size: 1.15rem;
+  }
+
+  .proj-env-pill {
+    align-self: flex-start;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+
+  .project-desc {
+    font-size: 0.85rem;
+  }
+
+  .project-bullets-list {
+    font-size: 0.82rem;
+    padding-left: 18px;
+  }
+
+  .contact-card-panel, .contact-form-panel {
+    padding: 20px 14px;
+  }
+
+  .site-footer {
+    padding: 28px 0;
+    margin-top: 45px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+}
+
+/* Extra Small Mobile Screens (< 480px) */
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 0 10px;
+    gap: 6px;
+  }
+
+  .brand-logo {
+    gap: 6px;
+  }
+
+  .brand-name {
+    font-size: 0.86rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.56rem;
+  }
+
+  .nav-actions {
+    gap: 4px;
+  }
+
+  .nav-actions .btn-sm {
+    padding: 5px 9px;
+    font-size: 0.72rem;
+    height: 32px;
+  }
+
+  .hero-avatar-wrapper {
+    width: 100px;
+    height: 100px;
+  }
+
+  .avatar-verified-badge {
+    width: 22px;
+    height: 22px;
+    font-size: 10px;
+    bottom: 2px;
+    right: 3px;
+  }
+
+  .hero-title {
+    font-size: 1.95rem;
+  }
+
+  .hero-bio {
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .stat-item-card {
+    padding: 12px 8px;
+  }
+
+  .stat-number {
+    font-size: 1.4rem;
+  }
+
+  .stat-title {
+    font-size: 0.72rem;
+  }
+
+  .stat-sub {
+    font-size: 0.62rem;
+  }
+
+  .contact-item-row {
+    padding: 10px 10px;
+  }
+
+  .contact-value-main {
+    font-size: 0.82rem;
+  }
+
+  .form-control {
+    font-size: 0.85rem;
+    padding: 10px 12px;
   }
 }
