@@ -251,34 +251,46 @@ class ExecutivePortfolio {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    const header = document.querySelector('.site-header');
 
-    window.addEventListener('scroll', () => {
+    const updateActiveState = () => {
       let current = '';
-      const scrollY = window.pageYOffset;
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
 
       sections.forEach(section => {
-        const top = section.offsetTop - 120;
+        const top = section.offsetTop - 140;
         const height = section.offsetHeight;
         if (scrollY >= top && scrollY < top + height) {
           current = section.getAttribute('id');
         }
       });
 
+      // Bottom of page detection (activates contact)
+      if ((window.innerHeight + scrollY) >= (document.documentElement.scrollHeight - 60)) {
+        current = 'contact';
+      }
+
+      // If at the top of the page or in the hero/overview section, activate About/Hero
+      if (!current || current === 'hero') {
+        current = 'about';
+      }
+
       navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
+        const href = link.getAttribute('href');
+        if (href === `#${current}` || (current === 'about' && (href === '#about' || href === '#hero'))) {
           link.classList.add('active');
         }
       });
 
       mobileNavLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
+        const href = link.getAttribute('href');
+        if (href === `#${current}` || (current === 'about' && (href === '#about' || href === '#hero'))) {
           link.classList.add('active');
         }
       });
 
-      const header = document.querySelector('.site-header');
       if (header) {
         if (scrollY > 40) {
           header.classList.add('scrolled');
@@ -286,7 +298,11 @@ class ExecutivePortfolio {
           header.classList.remove('scrolled');
         }
       }
-    });
+    };
+
+    window.addEventListener('scroll', updateActiveState, { passive: true });
+    // Trigger immediately on load so About is highlighted when page opens
+    updateActiveState();
   }
 
   bindEvents() {
