@@ -157,7 +157,7 @@ class ExecutivePortfolio {
     container.innerHTML = `
       <div class="education-stack">
         ${list.map(edu => `
-          <div class="education-box tilt-target" style="margin-bottom: 16px;">
+          <div class="education-box tilt-target">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 6px;">
               <div class="edu-tag-label" style="margin-bottom: 0;">${edu.type || 'Academic Education'}</div>
               <span class="edu-timeline-text" style="color: var(--accent-cyan); font-weight: 500;">${edu.timeline}</span>
@@ -166,23 +166,6 @@ class ExecutivePortfolio {
             <div class="edu-school" style="font-size: 0.9rem; color: var(--text-body);">${edu.institution} • <span style="color: var(--text-muted);">${edu.location}</span>${edu.cgpa ? ` • <span style="color: var(--accent-cyan); font-weight: 600;">${edu.cgpa}</span>` : ''}</div>
           </div>
         `).join('')}
-
-        <div class="education-box tilt-target" style="background: rgba(14, 165, 233, 0.04); border-color: rgba(14, 165, 233, 0.25);">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 8px;">
-            <div class="edu-tag-label" style="margin-bottom: 0; color: var(--accent-cyan); border-color: rgba(56, 189, 248, 0.3);">Official Document</div>
-            <span class="edu-timeline-text" style="color: var(--accent-emerald); font-weight: 500;">Updated Aug 2026</span>
-          </div>
-          <h3 class="edu-degree-title" style="font-size: 1.12rem; margin-bottom: 6px;">Executive SOC Resume</h3>
-          <p style="font-size: 0.86rem; color: var(--text-body); margin-bottom: 14px;">Interactive web resume and official submitted PDF document.</p>
-          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <a href="resume/Thejeswin_S_L_Resume.html" target="_blank" class="btn btn-secondary btn-sm" style="flex: 1; min-width: 120px; justify-content: center;">
-              <span>👁️ View Resume</span>
-            </a>
-            <a href="resume/Thejeswin_S_L_Resume.pdf" download="Thejeswin_S_L_Resume.pdf" target="_blank" class="btn btn-primary btn-sm" style="flex: 1; min-width: 140px; justify-content: center;">
-              <span>📥 Download PDF</span>
-            </a>
-          </div>
-        </div>
       </div>
     `;
   }
