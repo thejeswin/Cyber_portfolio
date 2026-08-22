@@ -163,11 +163,13 @@ class SOCTerminal {
 
   cmdWhoami() {
     const prof = this.data.profile || {};
+    const rolesStr = prof.roles ? prof.roles.join(' • ') : (prof.title || 'Cybersecurity Analyst');
+    const edu = Array.isArray(this.data.education) ? this.data.education[0] : (this.data.education || {});
     this.printLine(`
 <div class="term-box">
   <div class="term-box-title">ANALYST PROFILE: ${prof.name}</div>
-  <p><strong>Title:</strong> ${prof.title}</p>
-  <p><strong>Education:</strong> ${this.data.education?.degree} (${this.data.education?.timeline})</p>
+  <p><strong>Roles:</strong> ${rolesStr}</p>
+  <p><strong>Education:</strong> ${edu.degree || 'B.E. Computer Science & Engineering (Cyber Security)'} (${edu.timeline || '2022 – 2026'})</p>
   <p><strong>Location:</strong> ${prof.location}</p>
   <p><strong>Core Focus:</strong> 24/7 SIEM monitoring, log correlation, IOC extraction, MITRE ATT&CK mapping, and false positive reduction.</p>
 </div>`);
@@ -201,16 +203,22 @@ class SOCTerminal {
     const projects = this.data.projects || [];
     let html = '<div class="term-box-title">SOC HANDS-ON PROJECTS</div>';
     projects.forEach((p, idx) => {
+      const linksHtml = p.links && p.links.length > 0
+        ? `<div class="term-proj-links" style="margin-top: 6px; font-size: 0.85em;">${p.links.map(l => `<a href="${l.url}" target="_blank" rel="noreferrer" style="color: var(--accent-cyan, #38bdf8); text-decoration: underline; margin-right: 14px;">🔗 ${l.label} ↗</a>`).join('')}</div>`
+        : '';
+
+      const tags = p.tags || p.techStack || [];
       html += `
       <div class="term-proj-card">
         <div class="term-proj-head">
           <span class="term-highlight">#${idx + 1} ${p.title}</span>
-          <span class="term-badge">${p.year}</span>
+          <span class="term-badge">${p.period || p.year || ''}</span>
         </div>
-        <div class="term-proj-role">${p.role} | <em>${p.environment}</em></div>
-        <p class="term-proj-desc">${p.highlight}</p>
-        <div class="term-tag-row">
-          ${p.techStack.map(t => `<span class="term-tag">${t}</span>`).join(' ')}
+        <div class="term-proj-role">${p.type || p.role || ''} | <em>${p.environment || ''}</em></div>
+        <p class="term-proj-desc">${p.description || p.highlight || ''}</p>
+        ${linksHtml}
+        <div class="term-tag-row" style="margin-top: 8px;">
+          ${tags.map(t => `<span class="term-tag">${t}</span>`).join(' ')}
         </div>
       </div>`;
     });
@@ -218,25 +226,24 @@ class SOCTerminal {
   }
 
   cmdSkills(args) {
-    const skills = this.data.technicalSkills || {};
-    let html = '<div class="term-box-title">TECHNICAL SKILLS & PROFICIENCY</div>';
+    const skills = this.data.technicalSkills || [];
+    let html = '<div class="term-box-title">TECHNICAL SKILLS & COMPETENCIES</div>';
     
-    for (const [category, list] of Object.entries(skills)) {
-      html += `<div class="term-cat-title">> ${category.toUpperCase()}</div>`;
-      html += '<div class="term-skills-grid">';
-      list.forEach(s => {
-        const barWidth = Math.min(100, Math.max(10, s.proficiency));
-        html += `
-        <div class="term-skill-item">
-          <div class="term-skill-header">
-            <span><strong>${s.name}</strong></span>
-            <span>${s.proficiency}%</span>
-          </div>
-          <div class="term-progress-bar"><div class="term-progress-fill" style="width: ${barWidth}%"></div></div>
-          <div class="term-skill-desc">${s.desc}</div>
-        </div>`;
+    if (Array.isArray(skills)) {
+      skills.forEach(cat => {
+        html += `<div class="term-cat-title">> ${cat.category.toUpperCase()}</div>`;
+        html += '<div class="term-skills-grid">';
+        (cat.items || []).forEach(s => {
+          html += `
+          <div class="term-skill-item">
+            <div class="term-skill-header">
+              <span><strong>${s.name}</strong></span>
+              <span style="color: var(--text-muted); font-size: 0.82em;">${s.note || ''}</span>
+            </div>
+          </div>`;
+        });
+        html += '</div>';
       });
-      html += '</div>';
     }
     this.printLine(html);
   }
@@ -348,11 +355,15 @@ class SOCTerminal {
     const certs = this.data.certifications || [];
     let html = '<div class="term-box-title">CERTIFICATIONS & TRAININGS</div>';
     certs.forEach(c => {
+      const badgeHtml = c.badge ? `<span class="term-badge">${c.badge}</span>` : '';
+      const skillsHtml = c.skills && Array.isArray(c.skills)
+        ? `<div class="term-tag-row">${c.skills.map(s => `<span class="term-tag">${s}</span>`).join(' ')}</div>`
+        : '';
       html += `
       <div class="term-cert-card">
         <div class="term-cert-title"><strong>${c.title}</strong> — <span class="term-highlight">${c.issuer}</span></div>
-        <div class="term-cert-sub">${c.type} <span class="term-badge">${c.badge}</span></div>
-        <div class="term-tag-row">${c.skills.map(s => `<span class="term-tag">${s}</span>`).join(' ')}</div>
+        <div class="term-cert-sub">${c.type} ${badgeHtml}</div>
+        ${skillsHtml}
       </div>`;
     });
     this.printLine(html);

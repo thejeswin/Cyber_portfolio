@@ -62,30 +62,55 @@ class ExecutivePortfolio {
     const container = document.getElementById('projects-stack-container');
     if (!container || !this.data.projects) return;
 
-    container.innerHTML = this.data.projects.map(p => `
-      <article class="project-card tilt-target">
-        <div class="project-card-header">
-          <div>
-            <div class="project-meta-badges">
-              <span class="proj-type-badge">${p.type}</span>
-              <span class="proj-period">${p.period}</span>
-            </div>
-            <h3 class="project-title">${p.title}</h3>
+    container.innerHTML = this.data.projects.map(p => {
+      const linksHtml = p.links && p.links.length > 0 ? `
+        <div class="project-actions-bar">
+          <div class="project-links-row">
+            ${p.links.map(l => {
+              const isGithub = l.icon === 'github' || (l.url && l.url.includes('github.com') && !l.url.includes('github.io'));
+              const iconSvg = isGithub
+                ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>`
+                : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`;
+              const btnClass = isGithub ? 'proj-action-btn proj-btn-git' : 'proj-action-btn proj-btn-live';
+              return `
+                <a href="${l.url}" target="_blank" rel="noreferrer" class="${btnClass}">
+                  ${iconSvg}
+                  <span>${l.label}</span>
+                  <svg class="proj-link-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </a>
+              `;
+            }).join('')}
           </div>
-          <div class="proj-env-pill">${p.environment}</div>
         </div>
+      ` : '';
 
-        <p class="project-desc">${p.description}</p>
+      return `
+        <article class="project-card tilt-target">
+          <div class="project-card-header">
+            <div>
+              <div class="project-meta-badges">
+                <span class="proj-type-badge">${p.type}</span>
+                <span class="proj-period">${p.period}</span>
+              </div>
+              <h3 class="project-title">${p.title}</h3>
+            </div>
+            <div class="proj-env-pill">${p.environment}</div>
+          </div>
 
-        <ul class="project-bullets-list">
-          ${p.bullets.map(b => `<li>${b}</li>`).join('')}
-        </ul>
+          <p class="project-desc">${p.description}</p>
 
-        <div class="project-tags-row">
-          ${p.tags.map(t => `<span class="proj-tag">${t}</span>`).join('')}
-        </div>
-      </article>
-    `).join('');
+          <ul class="project-bullets-list">
+            ${p.bullets.map(b => `<li>${b}</li>`).join('')}
+          </ul>
+
+          ${linksHtml}
+
+          <div class="project-tags-row">
+            ${p.tags.map(t => `<span class="proj-tag">${t}</span>`).join('')}
+          </div>
+        </article>
+      `;
+    }).join('');
   }
 
   renderSkills() {

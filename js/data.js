@@ -46,6 +46,20 @@ const PORTFOLIO_DATA = {
         "Built SPL correlation rules for brute-force logon detection (Event ID 4625, 10+ unsuccessful login attempts within 60 seconds) and macro-malware indicators (Event ID 4104 via Office parent processes).",
         "Engineered 6 dashboards tracking unsuccessful authentications, outbound anomalies, and process execution chains; tuned thresholds against known administrative activity to cut false positives by ~35%."
       ],
+      links: [
+        {
+          label: "Live Lab Documentation",
+          url: "https://thejeswin.github.io/splunk-siem-soc-lab/",
+          icon: "site",
+          type: "primary"
+        },
+        {
+          label: "GitHub Repository",
+          url: "https://github.com/thejeswin/splunk-siem-soc-lab",
+          icon: "github",
+          type: "secondary"
+        }
+      ],
       tags: ["Splunk Enterprise", "SPL", "Event ID 4625", "Event ID 4104", "Sysmon", "Detection Engineering", "Dashboard Design"]
     },
     {

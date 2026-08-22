@@ -28,7 +28,9 @@ try {
             elseif ($ext -eq ".js") { $contentType = "application/javascript" }
             elseif ($ext -eq ".json") { $contentType = "application/json" }
             elseif ($ext -eq ".png") { $contentType = "image/png" }
+            elseif ($ext -eq ".jpg" -or $ext -eq ".jpeg") { $contentType = "image/jpeg" }
             elseif ($ext -eq ".svg") { $contentType = "image/svg+xml" }
+            elseif ($ext -eq ".pdf") { $contentType = "application/pdf" }
             
             $response.ContentType = $contentType
             $bytes = [System.IO.File]::ReadAllBytes($filePath)
