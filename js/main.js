@@ -446,11 +446,15 @@ class ExecutivePortfolio {
     const dropdowns = document.querySelectorAll('.resume-dropdown');
     dropdowns.forEach(dd => {
       const toggle = dd.querySelector('.resume-dropdown-toggle');
+      const items = dd.querySelectorAll('.resume-dropdown-item');
       if (!toggle) return;
 
+      // Click / Tap toggle
       toggle.addEventListener('click', (e) => {
+        e.preventDefault();
         e.stopPropagation();
         const isOpen = dd.classList.contains('is-open');
+        
         // Close any other open dropdowns
         dropdowns.forEach(other => {
           if (other !== dd) {
@@ -466,6 +470,26 @@ class ExecutivePortfolio {
           dd.classList.add('is-open');
           toggle.setAttribute('aria-expanded', 'true');
         }
+      });
+
+      // Mouse enter: open smoothly
+      dd.addEventListener('mouseenter', () => {
+        dd.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+      });
+
+      // Mouse leave: seamlessly close immediately when mouse moves away
+      dd.addEventListener('mouseleave', () => {
+        dd.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+
+      // Click on any item: close dropdown
+      items.forEach(item => {
+        item.addEventListener('click', () => {
+          dd.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
       });
     });
 

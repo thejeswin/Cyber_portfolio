@@ -684,10 +684,10 @@ body.mobile-nav-active {
 
 .resume-dropdown-menu {
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 6px);
   right: 0;
-  min-width: 270px;
-  background: rgba(11, 17, 33, 0.96);
+  min-width: 275px;
+  background: rgba(11, 17, 33, 0.98);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(56, 189, 248, 0.3);
@@ -700,14 +700,24 @@ body.mobile-nav-active {
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-8px) scale(0.97);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(-6px) scale(0.98);
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s;
   pointer-events: none;
 }
 
+/* Invisible bridge to prevent hover loss between button and menu */
+.resume-dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: transparent;
+}
+
 .resume-dropdown.is-open .resume-dropdown-menu,
-.resume-dropdown:hover .resume-dropdown-menu,
-.resume-dropdown:focus-within .resume-dropdown-menu {
+.resume-dropdown:hover .resume-dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0) scale(1);
@@ -717,12 +727,11 @@ body.mobile-nav-active {
 .hero-cta-group .resume-dropdown-menu {
   right: auto;
   left: 50%;
-  transform: translateX(-50%) translateY(-8px) scale(0.97);
+  transform: translateX(-50%) translateY(-6px) scale(0.98);
 }
 
 .hero-cta-group .resume-dropdown.is-open .resume-dropdown-menu,
-.hero-cta-group .resume-dropdown:hover .resume-dropdown-menu,
-.hero-cta-group .resume-dropdown:focus-within .resume-dropdown-menu {
+.hero-cta-group .resume-dropdown:hover .resume-dropdown-menu {
   transform: translateX(-50%) translateY(0) scale(1);
 }
 
