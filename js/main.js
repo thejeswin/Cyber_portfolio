@@ -19,6 +19,7 @@ class ExecutivePortfolio {
     this.renderEducation();
     this.bindEvents();
     this.initMobileNav();
+    this.initResumeDropdowns();
     this.initMouseSpotlight();
     this.init3DCardParallax();
     this.initScrollSpy();
@@ -439,6 +440,54 @@ class ExecutivePortfolio {
         }
       });
     }
+  }
+
+  initResumeDropdowns() {
+    const dropdowns = document.querySelectorAll('.resume-dropdown');
+    dropdowns.forEach(dd => {
+      const toggle = dd.querySelector('.resume-dropdown-toggle');
+      if (!toggle) return;
+
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = dd.classList.contains('is-open');
+        // Close any other open dropdowns
+        dropdowns.forEach(other => {
+          if (other !== dd) {
+            other.classList.remove('is-open');
+            other.querySelector('.resume-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        if (isOpen) {
+          dd.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        } else {
+          dd.classList.add('is-open');
+          toggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      dropdowns.forEach(dd => {
+        if (!dd.contains(e.target)) {
+          dd.classList.remove('is-open');
+          dd.querySelector('.resume-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        dropdowns.forEach(dd => {
+          dd.classList.remove('is-open');
+          dd.querySelector('.resume-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
   }
 
   showToast(msg) {

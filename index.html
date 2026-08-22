@@ -56,12 +56,37 @@
         </nav>
 
         <div class="nav-actions">
-          <a href="resume/Thejeswin_S_L_Resume.html" target="_blank" class="btn btn-secondary btn-sm" title="View Online Resume">
-            <span>👁️ View Resume</span>
-          </a>
-          <a href="resume/Thejeswin_S_L_Resume.pdf" download="Thejeswin_S_L_Resume.pdf" target="_blank" class="btn btn-secondary btn-sm" title="Download Original Submitted PDF">
-            <span>📥 Download PDF</span>
-          </a>
+          <!-- Single Resume Button with View & Download Dropdown -->
+          <div class="resume-dropdown">
+            <button type="button" class="btn btn-secondary btn-sm resume-dropdown-toggle" id="nav-resume-btn" aria-haspopup="true" aria-expanded="false" title="Resume Options">
+              <span>📄 Resume</span>
+              <svg class="resume-dropdown-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="resume-dropdown-menu" role="menu" aria-labelledby="nav-resume-btn">
+              <a href="resume/Thejeswin_S_L_Resume.html" target="_blank" class="resume-dropdown-item" role="menuitem">
+                <span class="r-icon">👁️</span>
+                <div class="r-text">
+                  <span class="r-title">View Online Resume</span>
+                  <span class="r-desc">Interactive Web Sheet</span>
+                </div>
+              </a>
+              <a href="resume/Thejeswin_S_L_Resume.pdf" target="_blank" class="resume-dropdown-item" role="menuitem">
+                <span class="r-icon">📄</span>
+                <div class="r-text">
+                  <span class="r-title">View Original PDF</span>
+                  <span class="r-desc">Open in Browser Preview</span>
+                </div>
+              </a>
+              <a href="resume/Thejeswin_S_L_Resume.pdf" download="Thejeswin_S_L_Resume.pdf" class="resume-dropdown-item download-item" role="menuitem">
+                <span class="r-icon">📥</span>
+                <div class="r-text">
+                  <span class="r-title">Download Original PDF</span>
+                  <span class="r-desc">Direct Save to Device</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
           <a href="#contact" class="btn btn-primary btn-sm">
             <span>Get in Touch</span>
           </a>
@@ -96,12 +121,17 @@
         </nav>
 
         <div class="mobile-nav-actions">
-          <a href="resume/Thejeswin_S_L_Resume.html" target="_blank" class="btn btn-secondary btn-md mobile-action-btn">
-            <span>👁️ View Online Resume</span>
-          </a>
-          <a href="resume/Thejeswin_S_L_Resume.pdf" download="Thejeswin_S_L_Resume.pdf" target="_blank" class="btn btn-secondary btn-md mobile-action-btn">
-            <span>📥 Download Original Resume PDF</span>
-          </a>
+          <div class="mobile-resume-group">
+            <div class="mobile-resume-header">📄 Official Resume</div>
+            <div class="mobile-resume-buttons">
+              <a href="resume/Thejeswin_S_L_Resume.html" target="_blank" class="btn btn-secondary btn-sm mobile-resume-btn">
+                <span>👁️ View</span>
+              </a>
+              <a href="resume/Thejeswin_S_L_Resume.pdf" download="Thejeswin_S_L_Resume.pdf" target="_blank" class="btn btn-primary btn-sm mobile-resume-btn">
+                <span>📥 Download PDF</span>
+              </a>
+            </div>
+          </div>
           <a href="#contact" class="btn btn-primary btn-md mobile-action-btn mobile-contact-trigger">
             <span>💬 Get in Touch</span>
           </a>
@@ -166,12 +196,38 @@
               <span>Explore Featured Projects</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="resume/Thejeswin_S_L_Resume.html" target="_blank" class="btn btn-secondary btn-lg" title="View Interactive Online Resume">
-              <span>View Resume 👁️</span>
-            </a>
-            <a href="resume/Thejeswin_S_L_Resume.pdf" download="Thejeswin_S_L_Resume.pdf" target="_blank" class="btn btn-secondary btn-lg" title="Download Original Submitted PDF">
-              <span>Download Original PDF 📥</span>
-            </a>
+
+            <!-- Single Resume Button with View & Download Dropdown -->
+            <div class="resume-dropdown">
+              <button type="button" class="btn btn-secondary btn-lg resume-dropdown-toggle" id="hero-resume-btn" aria-haspopup="true" aria-expanded="false" title="Resume Options">
+                <span>📄 Resume (View / Download)</span>
+                <svg class="resume-dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="resume-dropdown-menu" role="menu" aria-labelledby="hero-resume-btn">
+                <a href="resume/Thejeswin_S_L_Resume.html" target="_blank" class="resume-dropdown-item" role="menuitem">
+                  <span class="r-icon">👁️</span>
+                  <div class="r-text">
+                    <span class="r-title">View Online Resume</span>
+                    <span class="r-desc">Interactive Web Sheet</span>
+                  </div>
+                </a>
+                <a href="resume/Thejeswin_S_L_Resume.pdf" target="_blank" class="resume-dropdown-item" role="menuitem">
+                  <span class="r-icon">📄</span>
+                  <div class="r-text">
+                    <span class="r-title">View Original PDF</span>
+                    <span class="r-desc">Open in Browser Preview</span>
+                  </div>
+                </a>
+                <a href="resume/Thejeswin_S_L_Resume.pdf" download="Thejeswin_S_L_Resume.pdf" class="resume-dropdown-item download-item" role="menuitem">
+                  <span class="r-icon">📥</span>
+                  <div class="r-text">
+                    <span class="r-title">Download Original PDF</span>
+                    <span class="r-desc">Direct Save to Device</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+
             <a href="#contact" class="btn btn-secondary btn-lg">
               <span>Let's Connect ⚡</span>
             </a>
