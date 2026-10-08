@@ -12,6 +12,7 @@ class ExecutivePortfolio {
 
   init() {
     this.renderStats();
+    this.renderExperience();
     this.renderCompetencies();
     this.renderProjects();
     this.renderSkills();
@@ -35,6 +36,40 @@ class ExecutivePortfolio {
         <div class="stat-title">${s.label}</div>
         <div class="stat-sub">${s.detail}</div>
       </div>
+    `).join('');
+  }
+
+  renderExperience() {
+    const container = document.getElementById('experience-stack-container');
+    if (!container || !this.data.experience) return;
+
+    container.innerHTML = this.data.experience.map(exp => `
+      <article class="experience-card tilt-target">
+        <div class="exp-card-header">
+          <div class="exp-title-group">
+            <div class="exp-meta-badges">
+              <span class="exp-status-pill"><span class="pulse-dot-sm"></span> ${exp.badge || 'Current Role'}</span>
+              <span class="exp-type-badge">${exp.type}</span>
+              <span class="exp-location-badge">📍 ${exp.location}</span>
+            </div>
+            <h3 class="exp-role-title">${exp.role}</h3>
+            <div class="exp-company-bar">
+              <span class="exp-company-name">🏢 ${exp.company}</span>
+            </div>
+          </div>
+          <div class="exp-period-pill">${exp.period}</div>
+        </div>
+
+        <p class="exp-desc">${exp.description}</p>
+
+        <ul class="exp-bullets-list">
+          ${exp.bullets.map(b => `<li>${b}</li>`).join('')}
+        </ul>
+
+        <div class="exp-tags-row">
+          ${exp.tags.map(t => `<span class="exp-tag">${t}</span>`).join('')}
+        </div>
+      </article>
     `).join('');
   }
 

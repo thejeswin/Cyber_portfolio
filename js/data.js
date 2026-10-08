@@ -2,10 +2,10 @@
 const PORTFOLIO_DATA = {
   profile: {
     name: "Thejeswin S L",
-    roles: ["Cybersecurity Analyst", "SOC Analyst L1", "Blue Team Security", "Incident Response"],
+    roles: ["Cyber Security Intern", "Cybersecurity Analyst", "SOC Analyst L1", "Blue Team Security", "Incident Response"],
     tagline: "Specializing in SIEM Engineering, Incident Response & MITRE ATT&CK Threat Hunting",
     graduation: "Graduated 2026",
-    status: "Available for Full-Time Roles & Opportunities",
+    status: "Cyber Security Intern at Velocyverse • Graduated 2026",
     location: "Krishnagiri, India",
     phone: "+91 88255 71099",
     email: "thejes0611@gmail.com",
@@ -16,7 +16,7 @@ const PORTFOLIO_DATA = {
     tryhackme: "https://tryhackme.com/p/Thejes",
     tryhackmeDisplay: "tryhackme.com/p/Thejes",
     resumeUrl: "resume/Thejeswin_S_L_Resume.pdf",
-    summary: `Cybersecurity Engineering graduate (2026) with hands-on SOC L1 experience across Wazuh, Splunk, and ELK Stack, specializing in real-time alert triage, Windows Event Log and Sysmon analysis, IOC identification, and structured incident response. Skilled in building SIEM correlation rules mapped to MITRE ATT&CK, reducing false positives through threshold tuning, and reconstructing attack timelines by correlating endpoint, network, and authentication telemetry. Completed the TryHackMe SOC Level 1 path (80+ rooms) with strong grounding in TCP/IP networking, firewall/IDS-IPS fundamentals, and the NIST incident-response lifecycle. Seeking a SOC/Cybersecurity Analyst role to bring production-grade detection engineering and investigation skills to a live security operations environment.`,
+    summary: `Cybersecurity Engineering graduate (2026) and Cyber Security Intern at Velocyverse actively working in Microsoft 365 Defender with hands-on SOC L1 experience across Wazuh, Splunk, and ELK Stack, specializing in real-time alert triage, Windows Event Log and Sysmon analysis, IOC identification, and structured incident response. Skilled in building SIEM correlation rules mapped to MITRE ATT&CK, reducing false positives through threshold tuning, and reconstructing attack timelines by correlating endpoint, network, and authentication telemetry. Completed the TryHackMe SOC Level 1 path (80+ rooms) with strong grounding in TCP/IP networking, firewall/IDS-IPS fundamentals, and the NIST incident-response lifecycle.`,
     stats: [
       { value: "100+", label: "Alerts Triaged", detail: "Simulated in Wazuh & Splunk" },
       { value: "80+", label: "TryHackMe Rooms", detail: "SOC Level 1 Learning Path" },
@@ -24,6 +24,25 @@ const PORTFOLIO_DATA = {
       { value: "6", label: "Custom Dashboards", detail: "Engineered in Splunk" }
     ]
   },
+
+  experience: [
+    {
+      id: "velocyverse-intern",
+      role: "Cyber Security Intern",
+      company: "Velocyverse",
+      period: "Sep 2026 – Present",
+      location: "Remote",
+      type: "Internship",
+      badge: "Current Role",
+      description: "Contributing to enterprise cybersecurity defense, telemetry monitoring, vulnerability assessment, and threat mitigation workflows with active daily operations in Microsoft 365 Defender.",
+      bullets: [
+        "Actively working in Microsoft 365 Defender to monitor, investigate, and triage real-time security alerts and telemetry across endpoint and identity pipelines.",
+        "Conducted initial triage of security incidents, investigated Indicators of Compromise (IOCs), and mapped threat vectors to the MITRE ATT&CK framework.",
+        "Collaborated on vulnerability assessments, system security posture evaluations, and structured incident escalation workflows following industry best practices."
+      ],
+      tags: ["Microsoft 365 Defender", "Defender XDR", "Threat Detection", "SIEM Alert Triage", "IOC Investigation", "MITRE ATT&CK", "Incident Response", "Vulnerability Assessment", "Remote Operations"]
+    }
+  ],
 
   coreCompetencies: [
     { title: "SIEM Monitoring & Triage", desc: "Real-time monitoring, multi-feed alert classification, and false positive elimination." },
@@ -103,8 +122,9 @@ const PORTFOLIO_DATA = {
       ]
     },
     {
-      category: "SIEM Platforms",
+      category: "SIEM & XDR Platforms",
       items: [
+        { name: "Microsoft 365 Defender", note: "XDR, Endpoint & Identity alert triage" },
         { name: "Wazuh", note: "Agent config, alert triage" },
         { name: "Splunk", note: "Correlation rules, dashboards" },
         { name: "ELK Stack", note: "Elasticsearch, Logstash, Kibana" },

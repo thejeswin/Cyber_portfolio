@@ -19,6 +19,11 @@
     .summary { font-size: 9.5pt; color: #334155; text-align: justify; }
     .skills-grid { display: grid; grid-template-columns: 1fr; gap: 4px; font-size: 9.5pt; }
     .skill-cat strong { color: #0f172a; }
+    .exp-item { margin-bottom: 12px; }
+    .exp-head { display: flex; justify-content: space-between; font-weight: 700; color: #0f172a; font-size: 10pt; }
+    .exp-sub { font-style: italic; color: #0284c7; font-size: 9pt; margin-bottom: 4px; }
+    .exp-bullets { list-style: disc; margin-left: 18px; font-size: 9.2pt; color: #334155; }
+    .exp-bullets li { margin-bottom: 3px; }
     .proj-item { margin-bottom: 12px; }
     .proj-head { display: flex; justify-content: space-between; font-weight: 700; color: #0f172a; font-size: 10pt; }
     .proj-sub { font-style: italic; color: #0284c7; font-size: 9pt; margin-bottom: 4px; }
@@ -48,7 +53,7 @@
   <div class="page">
     <div class="header">
       <h1 class="name">THEJESWIN S L</h1>
-      <div class="title">Cybersecurity Analyst | SOC Analyst L1 | Blue Team Security | Incident Response</div>
+      <div class="title">Cyber Security Intern | Cybersecurity Analyst | SOC Analyst L1 | Blue Team Security</div>
       <div class="contact-line">
         Krishnagiri, India | +91 88255 71099 | <a href="mailto:thejes0611@gmail.com?subject=Portfolio%20Inquiry" target="_blank">thejes0611@gmail.com</a> | 
         <a href="https://linkedin.com/in/thejeswin" target="_blank">linkedin.com/in/thejeswin</a> | 
@@ -60,15 +65,32 @@
     <div class="section">
       <h2 class="section-title">Professional Summary</h2>
       <p class="summary">
-        Cybersecurity Engineering graduate (2026) with hands-on SOC L1 experience across Wazuh, Splunk, and ELK Stack, specializing in real-time alert triage, Windows Event Log and Sysmon analysis, IOC identification, and structured incident response. Skilled in building SIEM correlation rules mapped to MITRE ATT&CK, reducing false positives through threshold tuning, and reconstructing attack timelines by correlating endpoint, network, and authentication telemetry. Completed the TryHackMe SOC Level 1 path (80+ rooms) with strong grounding in TCP/IP networking, firewall/IDS-IPS fundamentals, and the NIST incident-response lifecycle. Seeking a SOC/Cybersecurity Analyst role to bring production-grade detection engineering and investigation skills to a live security operations environment.
+        Cybersecurity Engineering graduate (2026) and Cyber Security Intern at Velocyverse actively working in Microsoft 365 Defender with hands-on SOC L1 experience across Wazuh, Splunk, and ELK Stack, specializing in real-time alert triage, Windows Event Log and Sysmon analysis, IOC identification, and structured incident response. Skilled in building SIEM correlation rules mapped to MITRE ATT&CK, reducing false positives through threshold tuning, and reconstructing attack timelines by correlating endpoint, network, and authentication telemetry. Completed the TryHackMe SOC Level 1 path (80+ rooms) with strong grounding in TCP/IP networking, firewall/IDS-IPS fundamentals, and the NIST incident-response lifecycle.
       </p>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Professional Experience</h2>
+
+      <div class="exp-item">
+        <div class="exp-head">
+          <span>Velocyverse — Cyber Security Intern</span>
+          <span>Sep 2026 – Present</span>
+        </div>
+        <div class="exp-sub">Enterprise Cybersecurity Operations & Threat Defense | Remote (Focus: Microsoft 365 Defender)</div>
+        <ul class="exp-bullets">
+          <li>Actively working in Microsoft 365 Defender to monitor, investigate, and triage real-time security alerts and telemetry across endpoint and identity pipelines.</li>
+          <li>Conducted initial triage of security incidents, investigated Indicators of Compromise (IOCs), and mapped threat vectors to the MITRE ATT&CK framework.</li>
+          <li>Collaborated on vulnerability assessments, system security posture evaluations, and structured incident escalation workflows following industry best practices.</li>
+        </ul>
+      </div>
     </div>
 
     <div class="section">
       <h2 class="section-title">Technical Skills</h2>
       <div class="skills-grid">
         <div class="skill-cat"><strong>Programming & Query Languages:</strong> SQL (log & database querying), SPL (Splunk), KQL (Kibana); working knowledge of Python, C, and PHP fundamentals</div>
-        <div class="skill-cat"><strong>SIEM Platforms:</strong> Wazuh, Splunk, ELK Stack (Elasticsearch, Logstash, Kibana), Security Onion</div>
+        <div class="skill-cat"><strong>SIEM & XDR Platforms:</strong> Microsoft 365 Defender, Wazuh, Splunk, ELK Stack (Elasticsearch, Logstash, Kibana), Security Onion</div>
         <div class="skill-cat"><strong>Detection & Analysis:</strong> Windows Event Logs, Sysmon, Zeek, Suricata, Wireshark, Nmap, IOC Analysis</div>
         <div class="skill-cat"><strong>Frameworks & Methodologies:</strong> MITRE ATT&CK, Cyber Kill Chain, NIST Incident Response Lifecycle</div>
         <div class="skill-cat"><strong>Networking & Systems:</strong> TCP/IP, DNS, HTTP/HTTPS, SMTP, Firewall/IDS/IPS, Windows Server, Linux (Ubuntu, Kali)</div>

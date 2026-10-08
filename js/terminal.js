@@ -17,6 +17,7 @@ class SOCTerminal {
     this.commands = {
       help: () => this.cmdHelp(),
       whoami: () => this.cmdWhoami(),
+      experience: () => this.cmdExperience(),
       summary: () => this.cmdSummary(),
       stats: () => this.cmdStats(),
       skills: (args) => this.cmdSkills(args),
@@ -134,8 +135,8 @@ class SOCTerminal {
 </pre>
 <div class="term-meta-grid">
   <span><strong>ANALYST:</strong> Thejeswin S L</span>
-  <span><strong>ROLE:</strong> SOC Analyst L1 • Blue Team</span>
-  <span><strong>STATUS:</strong> Active • Ready for Dispatch</span>
+  <span><strong>ROLE:</strong> Cyber Security Intern @ Velocyverse</span>
+  <span><strong>STATUS:</strong> Active • Security Operations</span>
   <span><strong>SECURITY NODE:</strong> Krishnagiri / Coimbatore (IN)</span>
 </div>`;
     this.printLine(bannerText);
@@ -144,6 +145,7 @@ class SOCTerminal {
   cmdHelp() {
     const helpOutput = `
 <div class="term-table">
+  <div class="term-row"><span class="term-key">experience</span><span class="term-val">View professional experience (Velocyverse - Cyber Security Intern)</span></div>
   <div class="term-row"><span class="term-key">triage [id]</span><span class="term-val">Simulate live SOC incident triage (e.g. <code>triage 1</code>, <code>triage list</code>)</span></div>
   <div class="term-row"><span class="term-key">rules / spl / kql</span><span class="term-val">Inspect custom correlation detection rules for Event IDs 4625, 4104, Sysmon</span></div>
   <div class="term-row"><span class="term-key">mitre</span><span class="term-val">Display MITRE ATT&CK tactical mappings (T1078, T1021, T1055, T1059)</span></div>
@@ -168,11 +170,35 @@ class SOCTerminal {
     this.printLine(`
 <div class="term-box">
   <div class="term-box-title">ANALYST PROFILE: ${prof.name}</div>
+  <p><strong>Current Role:</strong> Cyber Security Intern @ Velocyverse (Sep 2026 – Present)</p>
   <p><strong>Roles:</strong> ${rolesStr}</p>
   <p><strong>Education:</strong> ${edu.degree || 'B.E. Computer Science & Engineering (Cyber Security)'} (${edu.timeline || '2022 – 2026'})</p>
   <p><strong>Location:</strong> ${prof.location}</p>
-  <p><strong>Core Focus:</strong> 24/7 SIEM monitoring, log correlation, IOC extraction, MITRE ATT&CK mapping, and false positive reduction.</p>
+  <p><strong>Core Focus:</strong> Microsoft 365 Defender operations, enterprise security monitoring, log telemetry triage, IOC correlation, and MITRE ATT&CK mapping.</p>
 </div>`);
+  }
+
+  cmdExperience() {
+    const experience = this.data.experience || [];
+    let html = '<div class="term-box-title">PROFESSIONAL EXPERIENCE</div>';
+    experience.forEach(exp => {
+      html += `
+      <div class="term-proj-card">
+        <div class="term-proj-head">
+          <span class="term-highlight">🏢 ${exp.company} — ${exp.role}</span>
+          <span class="term-badge" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4);">${exp.badge || 'Current'}</span>
+        </div>
+        <div class="term-proj-role">📍 ${exp.location} | ⏳ ${exp.period} | <em>${exp.type}</em></div>
+        <p class="term-proj-desc">${exp.description}</p>
+        <ul class="term-list" style="margin-top: 8px;">
+          ${exp.bullets.map(b => `<li>${b}</li>`).join('')}
+        </ul>
+        <div class="term-tag-row" style="margin-top: 8px;">
+          ${(exp.tags || []).map(t => `<span class="term-tag">${t}</span>`).join(' ')}
+        </div>
+      </div>`;
+    });
+    this.printLine(html);
   }
 
   cmdSummary() {
