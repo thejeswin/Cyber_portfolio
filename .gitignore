@@ -39,3 +39,5 @@ pnpm-debug.log*
 # Local build / scratch
 scratch/
 tmp/
+push.ps1
+push.bat
